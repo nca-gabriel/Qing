@@ -1,7 +1,6 @@
-import type { NextConfig } from "next";
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  appDir: "src",
-} as unknown;
+  reactStrictMode: true,
+};
 
-export default nextConfig;
+module.exports = nextConfig;
