@@ -3,7 +3,7 @@ import { Questions } from "@/utils/types";
 import axios from "@/utils/axios.client";
 // SSR
 export default async function QuizPage() {
-  const res = await axios.get<Questions[]>("/api/quiz");
+  const res = await axios.get<Questions[]>("/quiz");
   const questions: Questions[] = res.data;
 
   return (

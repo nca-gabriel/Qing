@@ -34,7 +34,7 @@ export default function QuizForm({ questions }: QuizFormProps) {
         id: Number(id),
         value,
       }));
-      const res = await axios.post<GradeResult>("/api/grade", {
+      const res = await axios.post<GradeResult>("/grade", {
         answers: payload,
       });
       setResult(res.data);
