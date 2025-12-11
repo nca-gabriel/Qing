@@ -1,6 +1,7 @@
 import QuizForm from "./QuizForm";
 import { Questions } from "@/utils/types";
 import axios from "@/utils/axios.client";
+
 // SSR
 export default async function QuizPage() {
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL; // full URL to Worker
