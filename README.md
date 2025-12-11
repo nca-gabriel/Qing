@@ -1,86 +1,99 @@
-QuizMaster – Full-Stack Quiz App
+# Qing - Quiz App
 
-Description:
-A full-stack quiz application demonstrating end-to-end functionality with a backend API and responsive frontend. Users can answer multiple question types, submit their answers, and receive a score with detailed results. This project highlights API integration, validation, error handling, and responsive UI using modern web technologies.
+A small quiz application built using Hono (backend) and Next.js + TailwindCSS (frontend).
+Demonstrates end-to-end functionality with mock data, including multiple question types, grading, and frontend interaction.
 
-Tech Stack
+## Quick Start
 
-Frontend: Next.js (App Router), React, TailwindCSS
+1. Clone the repository
+```bash
+git clone https://github.com/nca-gabriel/Qing.git
+cd Qing
+```
+2. Backend (Hono API)
+```bash
+cd backend
+npm install
+npm run dev      # runs Hono API locally
+```
+API Routes
 
-Backend: Hono (Cloudflare Workers)
+GET /api/quiz → returns mock quiz questions
 
-Deployment: Vercel (frontend), Cloudflare Workers (backend)
+POST /api/grade → accepts answers and returns scoring results
 
-Features
 
-Fetch quiz questions via /api/quiz
+3. Frontend (Next.js + TailwindCSS)
+```bash
+cd frontend
+npm install
+npm run dev      # runs Next.js app locally on http://localhost:3000
+```
 
-Submit answers via /api/grade
+4. Build & Deploy
 
-Multiple question types: text, checkbox, radio
+Frontend: npm run build → deploy to Vercel
 
-Client-side and backend validation
+Backend: deploy Hono API to Cloudflare Workers
 
-Loading and error handling
+## Architecture Notes
 
-Responsive UI for mobile and desktop
+Backend: Hono API (Edge runtime), deployed on Cloudflare Workers
 
-Optional (Portfolio Extras)
+Frontend: Next.js App Router + TailwindCSS
 
-Deterministic question/choice shuffling
+Communication: REST API endpoints for fetching quiz data and posting answers
 
-Timed quiz
+Validation: Ensures payload shape, handles missing/invalid data, returns 400 when necessary
 
-Custom state management or unit tests
+State Management: Simple React hooks (useState ), no external state library
 
-Deliverables
+## Validation Approach
 
-GitHub Repository
+Input types are validated using TypeScript interfaces for both questions and answers
 
-Backend + frontend code
+Backend checks for missing or invalid fields in API requests
 
-Clear README with:
+POST /api/grade returns a 400 status for malformed payloads
 
-Quick start instructions (install, dev, build)
+Ensures submitted values match the expected types (string, number, or array of numbers)
 
-Architecture notes (Node vs Edge, App Router vs Pages)
+## Libraries Used and Rationale
 
-Validation approach
+Hono: Lightweight, Edge-compatible backend framework
 
-Libraries used and rationale
+Next.js: React framework with App Router for frontend routing and SSR/CSR support
 
-Trade-offs and shortcuts
+TailwindCSS: Rapid, responsive UI styling
 
-Time spent
+Axios: HTTP requests for fetching quiz data and posting answers
 
-Deployment Links
+TypeScript: Type safety for interfaces, API contracts, and state management
 
-Frontend: Vercel
+## Trade-offs & Shortcuts Taken
 
-Backend API: Cloudflare Worker
+Used mock data only, no database or persistence
 
-Loom Video
+Backend handles all grading; frontend does not
 
-~5-minute walkthrough explaining features, architecture, and reasoning
+Backend shuffles questions and choices, and uses original data for scoring
 
-Constraints
+Minimal custom state management; relied on React hooks
 
-No external database or ORM; use mock data only
+Timed quiz and additional bonus features not implemented
 
-No authentication required
+## Testing
+Jest was used to test the grading logic (gradeAnswers function)
 
-AI-generated questions at runtime not allowed
+Example tests include:
 
-Submission within 72 hours
+Correct scoring for text, radio, and checkbox questions
 
-Evaluation Criteria
+Handling of incorrect answers
 
-End-to-end completeness (API + frontend)
+Checking shuffle logic
 
-Code quality and structure
+## Honest Time Spent
 
-Validation and error handling
+~7 hours developing, testing, and deploying both frontend and backend
 
-UI/UX execution using TailwindCSS
-
-Clarity and reasoning in README + Loom video
