@@ -1,17 +1,13 @@
-import { port } from "./utils/config";
 import { Hono } from "hono";
-import quizRoute from "./routes/quiz.route";
 import { cors } from "hono/cors";
+import quizRoute from "./routes/quiz.route";
 
 const app = new Hono();
 
-app.use(
-  "*",
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-    allowMethods: ["GET", "POST", "PATCH", "DELETE"],
-  })
-);
+app.use("*", cors({ origin: "*", credentials: true }));
 
 app.route("/", quizRoute);
+
+export default {
+  fetch: app.fetch, // attach the Hono app to fetch
+};
