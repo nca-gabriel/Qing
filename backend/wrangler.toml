@@ -1,0 +1,4 @@
+name = "quiz-backend"
+main = "src/server.ts"
+type = "modules"
+compatibility_date = "2025-12-11"
